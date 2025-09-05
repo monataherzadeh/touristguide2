@@ -10,9 +10,9 @@ public class TouristRepository {
     private ArrayList<TouristAttraction> attractions = new ArrayList<>();
 
     public void attractionList(){
-        attractions.add(new TouristAttraction("", ""));
-        attractions.add(new TouristAttraction("", ""));
-        attractions.add(new TouristAttraction("", ""));
+        attractions.add(new TouristAttraction("The Rainbow Mountains in Zhangye Danxia (Gansu Province)", "These striking, multicolored rock formations look like brushstrokes of paint across the landscape. It’s far less crowded than places like the Great Wall or Guilin but unforgettable if you’re into surreal natural beauty. "));
+        attractions.add(new TouristAttraction("Kangding in Sichuan Province.", " It’s a mountain town on the edge of the Tibetan Plateau, known for Tibetan culture, monasteries, and dramatic alpine scenery. Visitors often pass it by on their way to more famous spots, but it offers a raw, authentic glimpse of Tibetan-Chinese border culture. "));
+        attractions.add(new TouristAttraction("Tulou villages in Fujian Province.", "These are centuries-old, fortress-like circular houses built by the Hakka people. They’re a mix of communal living and defensive architecture, tucked away in the countryside, and feel worlds apart from the typical tourist trail. "));
     }
 
     public TouristAttraction addAttraction(TouristAttraction attraction) {
