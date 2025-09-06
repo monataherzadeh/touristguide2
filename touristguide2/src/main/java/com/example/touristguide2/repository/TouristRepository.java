@@ -1,22 +1,24 @@
 package com.example.touristguide2.repository;
 
+import com.example.touristguide2.model.Tags;
 import com.example.touristguide2.model.TouristAttraction;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 @Repository
 public class TouristRepository {
-    private ArrayList<TouristAttraction> attractions = new ArrayList<>();
+    private final ArrayList<TouristAttraction> attractions = new ArrayList<>();
 
-    public void attractionList(){
-        attractions.add(new TouristAttraction("", ""));
-        attractions.add(new TouristAttraction("", ""));
-        attractions.add(new TouristAttraction("", ""));
+    public void attractionList() {
+        attractions.add(new TouristAttraction("TheRainbowMountains", "multicolored rock formations resemble brushstrokes across the landscape", Arrays.asList(Tags.ART, Tags.FREE, Tags.NATUR)));
+        attractions.add(new TouristAttraction("Kangding", "A mountain town rich in Tibetan culture and alpine scenery", Arrays.asList(Tags.NATUR, Tags.FREE, Tags.MUSEUM)));
+        attractions.add(new TouristAttraction("Tulouvillages", "fortress-like communal homes built by the Hakka people date back to the 12th century", Arrays.asList(Tags.NATUR, Tags.HISTORY, Tags.ARCHITECTURE)));
     }
 
     public TouristAttraction addAttraction(TouristAttraction attraction) {
-        TouristAttraction newTouristAttraction = new TouristAttraction(attraction.getName(), attraction.getDescription());
+        TouristAttraction newTouristAttraction = new TouristAttraction(attraction.getName(), attraction.getDescription(), attraction.getTags());
         attractions.add(newTouristAttraction);
         return newTouristAttraction;
     }
@@ -28,15 +30,6 @@ public class TouristRepository {
     public TouristAttraction getAttractionByName(String name) {
         for (TouristAttraction attraction : attractions) {
             if (attraction.getName().equalsIgnoreCase(name)) {
-                return attraction;
-            }
-        }
-        return null;
-    }
-
-    public TouristAttraction findAttractionByName(String name) {
-        for (TouristAttraction attraction : attractions) {
-            if (attraction.getName().equals(name)) {
                 return attraction;
             }
         }
@@ -63,4 +56,6 @@ public class TouristRepository {
         }
         return null;
     }
+
+
 }

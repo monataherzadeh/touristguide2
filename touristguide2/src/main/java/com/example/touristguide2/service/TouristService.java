@@ -12,6 +12,7 @@ public class TouristService {
 
     public TouristService(TouristRepository repository) {
         this.repository = repository;
+        repository.attractionList();
     }
 
     public TouristAttraction addAttraction(TouristAttraction attraction) {

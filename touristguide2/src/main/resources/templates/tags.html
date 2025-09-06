@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Tags</title>
+</head>
+<body>
+
+<h2 th:text="${attraction.name}">Attraction Name</h2>
+
+<table>
+  <tr>
+    <th>Tags</th>
+  </tr>
+  <tr th:each="tag : ${attraction.tags}">
+    <td th:text="${tag}">Tag</td>
+  </tr>
+</table>
+
+<button type="button">Tilbage</button>
+
+</body>
+</html>
