@@ -12,6 +12,7 @@ public class TouristService {
 
     public TouristService(TouristRepository repository) {
         this.repository = repository;
+        repository.attractionList();
     }
 
     public TouristAttraction addAttraction(TouristAttraction attraction) {
@@ -33,4 +34,5 @@ public class TouristService {
     public TouristAttraction deleteAttraction(String name) {
         return repository.deleteAttraction(name);
     }
+
 }
