@@ -34,5 +34,4 @@ public class TouristService {
     public TouristAttraction deleteAttraction(String name) {
         return repository.deleteAttraction(name);
     }
-
 }
