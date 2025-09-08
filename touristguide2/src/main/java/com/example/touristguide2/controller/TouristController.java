@@ -24,6 +24,4 @@ public class TouristController {
         model.addAttribute("attraction", attraction);
         return "tags";
     }
-
 }
-

@@ -36,6 +36,15 @@ public class TouristRepository {
         return null;
     }
 
+    public TouristAttraction findAttractionByName(String name) {
+        for (TouristAttraction attraction : attractions) {
+            if (attraction.getName().equals(name)) {
+                return attraction;
+            }
+        }
+        return null;
+    }
+
     public TouristAttraction updateAttraction(String name, TouristAttraction updatedAttraction) {
         for (TouristAttraction attraction : attractions) {
             if (attraction.getName().equals(name)) {
