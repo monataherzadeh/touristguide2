@@ -1,10 +1,5 @@
 package com.example.touristguide2.model;
 
 public enum Tags {
-    BØRNEVENLIG,
-    UDENDØRS,
-    GRATIS,
-    BY,
-    HISTORIE,
-    KULTUR,
+    NATURE, FREE, ART, MUSEUM, HISTORY, ARCHITECTURE
 }

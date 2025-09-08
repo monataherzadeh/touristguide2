@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <style>
+        a:focus,
+        button:focus,
+        input:focus {
+            outline: 2px solid #005fcc;
+            outline-offset: 2px;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .button {
+            background-color: #808080;
+            border: none;
+            color: #f9f9f9;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 30px;
+            border-radius: 25px;
+            transition-property: background-color;
+            transition-duration: 0.3s;
+            transition-timing-function: ease;
+        }
+
+        .button:hover {
+            background-color: black;
+            box-shadow: 0 4px 12px #00000033;
+        }
+
+        h2, h3 {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        table {
+            border-collapse: separate;
+            border-spacing: 0;
+            border: 2px solid #ccc;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-top: 10px;
+            width: 300px;
+            box-shadow: 0 2px 8px #00000033;
+        }
+
+        th, td {
+            border-bottom: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+            background-color: #f9f9f9;
+        }
+
+    </style>
+    <meta charset="UTF-8">
+    <title>Tags</title>
+</head>
+<body>
+
+<h2 th:text="${attraction.name + ' Tags'}">Attraction Name</h2>
+<table>
+    <tr th:each="tag : ${attraction.tags}">
+        <td th:text="${tag}">Tag</td>
+    </tr>
+</table>
+
+<button class="button">Return</button>
+
+</body>
+</html>

@@ -1,22 +1,24 @@
 package com.example.touristguide2.repository;
 
+import com.example.touristguide2.model.Tags;
 import com.example.touristguide2.model.TouristAttraction;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 @Repository
 public class TouristRepository {
-    private ArrayList<TouristAttraction> attractions = new ArrayList<>();
+    private final ArrayList<TouristAttraction> attractions = new ArrayList<>();
 
-    public void attractionList(){
-        attractions.add(new TouristAttraction("The Rainbow Mountains in Zhangye Danxia (Gansu Province)", "These striking, multicolored rock formations look like brushstrokes of paint across the landscape. It’s far less crowded than places like the Great Wall or Guilin but unforgettable if you’re into surreal natural beauty. "));
-        attractions.add(new TouristAttraction("Kangding in Sichuan Province.", " It’s a mountain town on the edge of the Tibetan Plateau, known for Tibetan culture, monasteries, and dramatic alpine scenery. Visitors often pass it by on their way to more famous spots, but it offers a raw, authentic glimpse of Tibetan-Chinese border culture. "));
-        attractions.add(new TouristAttraction("Tulou villages in Fujian Province.", "These are centuries-old, fortress-like circular houses built by the Hakka people. They’re a mix of communal living and defensive architecture, tucked away in the countryside, and feel worlds apart from the typical tourist trail. "));
+    public void attractionList() {
+        attractions.add(new TouristAttraction("The Rainbow Mountains", "multicolored rock formations resemble brushstrokes across the landscape", Arrays.asList(Tags.ART, Tags.FREE, Tags.NATURE)));
+        attractions.add(new TouristAttraction("Kangding", "A mountain town rich in Tibetan culture and alpine scenery", Arrays.asList(Tags.NATURE, Tags.FREE, Tags.MUSEUM)));
+        attractions.add(new TouristAttraction("Tulou Villages", "fortress-like communal homes built by the Hakka people date back to the 12th century", Arrays.asList(Tags.NATURE, Tags.HISTORY, Tags.ARCHITECTURE)));
     }
 
     public TouristAttraction addAttraction(TouristAttraction attraction) {
-        TouristAttraction newTouristAttraction = new TouristAttraction(attraction.getName(), attraction.getDescription());
+        TouristAttraction newTouristAttraction = new TouristAttraction(attraction.getName(), attraction.getDescription(), attraction.getTags());
         attractions.add(newTouristAttraction);
         return newTouristAttraction;
     }
