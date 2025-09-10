@@ -7,6 +7,9 @@ public class TouristAttraction {
     private String description;
     private List<Tags> tags;
 
+    public TouristAttraction() {
+    }
+
     public TouristAttraction(String name, String description, List<Tags> tags) {
         this.name = name;
         this.description = description;
