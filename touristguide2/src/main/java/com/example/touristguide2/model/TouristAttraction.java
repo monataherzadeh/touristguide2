@@ -19,6 +19,11 @@ public class TouristAttraction {
 
     }
 
+    public String getLocationState() {
+        return locationState;
+    }
+
+
     public String getName() {
         return name;
     }
