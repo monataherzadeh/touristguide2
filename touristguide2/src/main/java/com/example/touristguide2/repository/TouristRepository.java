@@ -18,7 +18,7 @@ public class TouristRepository {
     }
 
     public TouristAttraction addAttraction(TouristAttraction attraction) {
-        TouristAttraction newTouristAttraction = new TouristAttraction(attraction.getName(), attraction.getDescription(), attraction.getTags(), attraction.getLocationState());
+        TouristAttraction newTouristAttraction = new TouristAttraction(attraction.getName(), attraction.getDescription(), attraction.getTags(), attraction.getLocation());
         attractions.add(newTouristAttraction);
         return newTouristAttraction;
     }
