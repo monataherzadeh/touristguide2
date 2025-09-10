@@ -22,7 +22,7 @@ public class TouristController {
     @GetMapping
     public String showAllAttractions(Model model) {
         List<TouristAttraction> attraction = touristService.getAllAttractions();
-        model.addAttribute("attraction",attraction);
+        model.addAttribute("attraction", attraction);
         return "attractionList";
     }
 
@@ -57,4 +57,19 @@ public class TouristController {
         model.addAttribute("allTags", Tags.values());
         return "edit";
     }
+
+    //n this controller method, attraction is the fresh object that Spring just built from the form submission in the edit.html document.
+    //Its getters will return the new user-supplied values.
+    @PostMapping("/update")
+    public String updateAttraction(@ModelAttribute TouristAttraction attraction) {
+        touristService.updateAttractionBoolean(
+                attraction.getName(),
+                attraction.getDescription(),
+                attraction.getTags(),
+                attraction.getLocation());
+        return "redirect:/attractions";
+    }
 }
+
+
+
