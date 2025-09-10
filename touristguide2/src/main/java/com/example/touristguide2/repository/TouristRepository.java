@@ -12,15 +12,14 @@ public class TouristRepository {
     private final ArrayList<TouristAttraction> attractions = new ArrayList<>();
 
     public void attractionList() {
-<<<<<<< HEAD
+
         attractions.add(new TouristAttraction("The Rainbow Mountains", "multicolored rock formations resemble brushstrokes across the landscape", Arrays.asList(Tags.ART, Tags.FREE, Tags.NATURE)));
         attractions.add(new TouristAttraction("Kangding", "A mountain town rich in Tibetan culture and alpine scenery", Arrays.asList(Tags.NATURE, Tags.FREE, Tags.MUSEUM)));
         attractions.add(new TouristAttraction("Tulou Villages", "fortress-like communal homes built by the Hakka people date back to the 12th century", Arrays.asList(Tags.NATURE, Tags.HISTORY, Tags.ARCHITECTURE)));
-=======
         attractions.add(new TouristAttraction("TheRainbowMountains", "multicolored rock formations resemble brushstrokes across the landscape", Arrays.asList(Tags.ART, Tags.FREE, Tags.NATURE)));
         attractions.add(new TouristAttraction("Kangding", "A mountain town rich in Tibetan culture and alpine scenery", Arrays.asList(Tags.NATURE, Tags.FREE, Tags.MUSEUM)));
         attractions.add(new TouristAttraction("Tulouvillages", "fortress-like communal homes built by the Hakka people date back to the 12th century", Arrays.asList(Tags.NATURE, Tags.HISTORY, Tags.ARCHITECTURE)));
->>>>>>> MonaBranch
+
     }
 
     public TouristAttraction addAttraction(TouristAttraction attraction) {
