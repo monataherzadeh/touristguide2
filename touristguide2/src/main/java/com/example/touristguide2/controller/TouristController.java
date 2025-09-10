@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("attractions")
 public class TouristController {
@@ -16,6 +18,13 @@ public class TouristController {
 
     public TouristController(TouristService touristService) {
         this.touristService = touristService;
+    }
+
+    @GetMapping
+    public String showAllAttractions(Model model) {
+        List<TouristAttraction> attraction = touristService.getAllAttractions();
+        model.addAttribute("attraction",attraction);
+        return "attractionList";
     }
 
     @GetMapping("/{name}/tags")
