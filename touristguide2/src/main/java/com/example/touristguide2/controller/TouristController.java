@@ -32,8 +32,6 @@ public class TouristController {
         model.addAttribute("attraction", attraction);
         return "tags";
     }
-<<<<<<< HEAD
-=======
 
     @GetMapping("/add")
     public String addAttraction(Model model) {
@@ -60,5 +58,4 @@ public class TouristController {
         return "edit";
     }
 
->>>>>>> MonaBranch
 }
