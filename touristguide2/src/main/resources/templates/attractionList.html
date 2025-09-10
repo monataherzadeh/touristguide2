@@ -19,7 +19,6 @@
     <td colspan="4">There are no attractions yet:(( </td>
     </tr>
      <tr th:each="attraction : ${attractions}">
-         <!-- WHERE is the attraction reference defined? Is it a reference thymeleaf interprets by itself under the hood? -->
         <td th:text="${attraction.name}"></td>
         <td th:text="${attraction.description}"></td>
          <span th:each="tag : ${attraction.tags}" th:text="${tag}" th:append=", "></span>

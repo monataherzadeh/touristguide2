@@ -57,5 +57,4 @@ public class TouristController {
         model.addAttribute("allTags", Tags.values());
         return "edit";
     }
-
 }
