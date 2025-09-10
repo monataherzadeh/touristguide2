@@ -1,13 +1,12 @@
 package com.example.touristguide2.controller;
 
 
+import com.example.touristguide2.model.Tags;
 import com.example.touristguide2.model.TouristAttraction;
 import com.example.touristguide2.service.TouristService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -33,4 +32,33 @@ public class TouristController {
         model.addAttribute("attraction", attraction);
         return "tags";
     }
+<<<<<<< HEAD
+=======
+
+    @GetMapping("/add")
+    public String addAttraction(Model model) {
+        TouristAttraction attraction = new TouristAttraction();
+        model.addAttribute("attraction", attraction);
+        model.addAttribute("allTags", Tags.values());
+        return "add";
+    }
+
+    @PostMapping("/save")
+    public String saveAttraction(@ModelAttribute("attraction") TouristAttraction attraction) {
+        touristService.addAttraction(attraction);
+        return "redirect:/attractions";
+    }
+
+    @GetMapping("/{name}/edit")
+    public String editAttraction(@PathVariable String name, Model model) {
+        TouristAttraction attraction = touristService.getAttractionsByName(name);
+        if (attraction == null) {
+            throw new IllegalArgumentException("Invalid attraction name: " + name);
+        }
+        model.addAttribute("attraction", attraction);
+        model.addAttribute("allTags", Tags.values());
+        return "edit";
+    }
+
+>>>>>>> MonaBranch
 }
