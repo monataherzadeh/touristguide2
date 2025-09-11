@@ -71,7 +71,7 @@ public class TouristRepository {
     }
 
 
-
+    //name kommer fra UI/fra view, med controller der modtager dette name værdi.
     public TouristAttraction deleteAttraction(String name) {
         for (TouristAttraction attraction : attractions) {
             if (attraction.getName().equalsIgnoreCase(name)) {
