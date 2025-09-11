@@ -13,9 +13,9 @@ public class TouristRepository {
     private final ArrayList<TouristAttraction> attractions = new ArrayList<>();
 
     public void attractionList() {
-        attractions.add(new TouristAttraction("Yellow Stone Nation Park", "Yellowstone National Park is a geothermal wonderland known for its geysers, hot springs, and abundant wildlife.", Arrays.asList(Tags.WATERFALL, Tags.FOREST, Tags.HIKING), "Wyoming"));
-        attractions.add(new TouristAttraction("Grand Canyon National Park", "Grand Canyon National Park showcases breathtaking vistas of one of the world’s largest and most iconic canyons.", Arrays.asList(Tags.DESERT, Tags.MOUNTAINS, Tags.MOUNTAINS), "Arizona"));
-        attractions.add(new TouristAttraction("Joshua Tree National Park", "Joshua Tree National Park is a desert landscape famed for its rugged rock formations and unique Joshua trees.", Arrays.asList(Tags.FOREST, Tags.MOUNTAINS, Tags.HIKING), "California"));
+        attractions.add(new TouristAttraction("Yellow Stone Nation Park", "Yellowstone National Park is a geothermal wonderland known for its geysers, hot springs, and abundant wildlife.", Arrays.asList(Tags.WATERFALL, Tags.FOREST, Tags.HIKING),"Wyoming"));
+        attractions.add(new TouristAttraction("Grand Canyon National Park", "Grand Canyon National Park showcases breathtaking vistas of one of the world’s largest and most iconic canyons.", Arrays.asList(Tags.DESERT, Tags.MOUNTAINS, Tags.MOUNTAINS),"Arizona"));
+        attractions.add(new TouristAttraction("Joshua Tree National Park", "Joshua Tree National Park is a desert landscape famed for its rugged rock formations and unique Joshua trees.", Arrays.asList(Tags.FOREST, Tags.MOUNTAINS, Tags.HIKING),"California"));
     }
 
     public TouristAttraction addAttraction(TouristAttraction attraction) {
