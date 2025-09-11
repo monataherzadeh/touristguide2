@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Wonderful attractions to visit as tourist: </title>
+</head>
+<body>
+<h1>Registered Attractions: </h1>
+
+<table>
+    <thead>
+    <tr th:if="${!attractions.isEmpty()}">
+        <th>Name</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${attractions.isEmpty()}">
+    <td colspan="4">There are no attractions yet:(( </td>
+    </tr>
+     <tr th:each="attraction : ${attractions}">
+        <td th:text="${attraction.name}"></td>
+        <td th:text="${attraction.description}"></td>
+         <span th:each="tag : ${attraction.tags}" th:text="${tag}" th:append=", "></span>
+
+         <!-- <a th:href="@{/user/edit/{userId}(userId=${user.userId})}">Edit</a>  -->
+    </tr>
+    </tbody>
+</table>
+<!--<a th:href="@{/user/register}">Register a user</a> -->
+</body>
+</html>
