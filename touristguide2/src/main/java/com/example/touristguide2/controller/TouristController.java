@@ -47,6 +47,8 @@ public class TouristController {
         return "redirect:/attractions";
     }
 
+
+    //the specific URL with the specific name field is accessed by a link in a former webpage
     @GetMapping("/{name}/edit")
     public String editAttraction(@PathVariable String name, Model model) {
         TouristAttraction attraction = touristService.getAttractionsByName(name);
