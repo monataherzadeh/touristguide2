@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Edit Tourist Attraction</title>
@@ -7,7 +7,9 @@
 <body>
 <h1>Edit Tourist Attraction</h1>
 
-<form th:action="@{'/attractions/update/' + ${attraction.name}}" th:object="${attraction}" method="post">
+<form th:action="@{/attractions/update}" th:object="${attraction}" method="post">
+
+    <input type="hidden" th:field="*{location}" />
 
     <div>
         <label for="name">Name:</label>
@@ -19,13 +21,14 @@
         <textarea id="description" th:field="*{description}" placeholder="Enter description"></textarea>
     </div>
 
-    <div>
-        <label>Tags:</label><br/>
-        <div style="display:flex; gap:10px;" th:each="tag : ${allTags}">
-            <input type="checkbox" th:value="${tag}" th:field="*{tags}"/>
-            <span th:text="${tag}"></span>
-        </div>
+    <div style="display:flex; gap:10px;" th:each="tag,iterStat : ${allTags}">
+        <input type="checkbox"
+               th:id="'tag-' + ${iterStat.index}"
+               th:value="${tag}"
+               th:field="*{tags}"/>
+        <label th:for="'tag-' + ${iterStat.index}" th:text="${tag}"></label>
     </div>
+
 
     <div>
         <button type="submit">OK</button>
