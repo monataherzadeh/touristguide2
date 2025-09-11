@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 @Repository
 public class TouristRepository {
@@ -44,7 +45,7 @@ public class TouristRepository {
         }
         return null;
     }
-
+    //update attraction and return the attraction with renewed data for its fields
     public TouristAttraction updateAttraction(String name, TouristAttraction updatedAttraction) {
         for (TouristAttraction attraction : attractions) {
             if (attraction.getName().equals(name)) {
@@ -55,7 +56,22 @@ public class TouristRepository {
         }
         return null;
     }
+    //Update attraction and return the boolean on whether the update was successful
+    //HVORDAN FÅR MAN DISSE VÆRDIER IND I DENNE METODE?
+    public boolean updateAttractionBoolean(String name, String newDescription, List<Tags> tags, String newLocation) {
+        for(TouristAttraction tempAttraction : attractions) {
+            if(tempAttraction.getName().equals(name)) {
+                tempAttraction.setDescription(newDescription);
+                tempAttraction.setLocation(newLocation);
+                tempAttraction.setTags(tags);
+                return true;
+            }
+        }
+        return false;
+    }
 
+
+    //name kommer fra UI/fra view, med controller der modtager dette name værdi.
     public TouristAttraction deleteAttraction(String name) {
         for (TouristAttraction attraction : attractions) {
             if (attraction.getName().equalsIgnoreCase(name)) {

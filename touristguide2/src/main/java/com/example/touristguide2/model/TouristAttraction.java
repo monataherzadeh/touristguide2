@@ -18,6 +18,11 @@ public class TouristAttraction {
         this.location = location;
     }
 
+    public String getLocation() {
+        return location;
+    }
+
+
     public String getName() {
         return name;
     }
@@ -41,6 +46,9 @@ public class TouristAttraction {
     public void setDescription(String description) {
         this.description = description;
     }
+    public void setLocation(String location) {
+        this.location = location;
+    }
 
     public List<Tags> getTags() {
         return tags;
@@ -49,4 +57,5 @@ public class TouristAttraction {
     public void setTags(List<Tags> tags) {
         this.tags = tags;
     }
+
 }
