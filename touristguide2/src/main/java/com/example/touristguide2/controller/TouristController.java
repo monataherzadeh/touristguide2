@@ -69,6 +69,12 @@ public class TouristController {
                 attraction.getLocation());
         return "redirect:/attractions";
     }
+
+    @PostMapping("/delete/{name}")
+    public String deleteAttraction(@PathVariable String name) {
+        touristService.deleteAttraction(name);
+        return "redirect:/attractions";
+    }
 }
 
 
