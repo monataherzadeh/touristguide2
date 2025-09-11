@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <style>
+        form div {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 300px;
+            padding: 5px;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            height: 80px;
+            resize: none;
+        }
+
+        button {
+            padding: 2px 8px;
+        }
+    </style>
+
+    <meta charset="UTF-8">
+    <title>Add Tourist Attraction</title>
+</head>
+<body>
+<h1>Add a new Tourist Attraction</h1>
+
+<form th:action="@{/save}" th:object="${attraction}" method="post">
+
+    <div>
+        <label for="name">Name</label>
+        <input type="text" id="name" th:field="*{name}" placeholder="Enter name"/>
+    </div>
+
+    <div>
+        <label for="description">Description</label>
+        <textarea id="description" th:field="*{description}" placeholder="Enter description"></textarea>
+    </div>
+
+    <div>
+        <label>Tags</label><br/>
+        <div th:each="tag : ${allTags}" style="display:inline-block; margin-right:10px;">
+            <label>
+                <input type="checkbox" th:value="${tag.id}" th:field="*{tags}"/>
+                <span th:text="${tag.name}"></span>
+            </label>
+        </div>
+    </div>
+
+    <div>
+        <button type="submit">OK</button>
+    </div>
+
+</form>
+
+</body>
+</html>
