@@ -18,11 +18,6 @@ public class TouristAttraction {
         this.location = location;
     }
 
-    public String getLocation() {
-        return location;
-    }
-
-
     public String getName() {
         return name;
     }
