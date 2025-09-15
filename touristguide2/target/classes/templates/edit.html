@@ -21,14 +21,13 @@
         <textarea id="description" th:field="*{description}" placeholder="Enter description"></textarea>
     </div>
 
-    <div style="display:flex; gap:10px;" th:each="tag,iterStat : ${allTags}">
-        <input type="checkbox"
-               th:id="'tag-' + ${iterStat.index}"
-               th:value="${tag}"
-               th:field="*{tags}"/>
-        <label th:for="'tag-' + ${iterStat.index}" th:text="${tag}"></label>
+    <div>
+        <label>Tags:</label><br/>
+        <div style="display:flex; gap:10px;" th:each="tag,iterStat : ${allTags}">
+            <input type="checkbox" th:id="'tag-' + ${iterStat.index}" th:value="${tag}" th:field="*{tags}"/>
+            <label th:for="'tag-' + ${iterStat.index}" th:text="${tag}"></label>
+        </div>
     </div>
-
 
     <div>
         <button type="submit">OK</button>
