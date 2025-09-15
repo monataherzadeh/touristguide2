@@ -6,14 +6,16 @@ public class TouristAttraction {
     private String name;
     private String description;
     private List<Tags> tags;
+    private String location;
 
     public TouristAttraction() {
     }
 
-    public TouristAttraction(String name, String description, List<Tags> tags) {
+    public TouristAttraction(String name, String description, List<Tags> tags, String location) {
         this.name = name;
         this.description = description;
         this.tags = tags;
+        this.location = location;
     }
 
     public String getName() {
@@ -22,6 +24,14 @@ public class TouristAttraction {
 
     public String getDescription() {
         return description;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     public void setName(String name) {
@@ -39,4 +49,5 @@ public class TouristAttraction {
     public void setTags(List<Tags> tags) {
         this.tags = tags;
     }
+
 }
