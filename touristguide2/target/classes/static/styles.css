@@ -20,9 +20,17 @@ h1{
     text-shadow: 2px 2px 5px #00000033;
 }
 
-h2, h3 {
+h2 {
     text-align: center;
     margin-top: 10px;
+}
+h3 {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 15px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
 table {
@@ -38,9 +46,6 @@ th, td {
     border-bottom: 1px solid #ddd;
 }
 
-tr:hover {
-    background-color: #f1f1f1;
-}
 
 button {
     background-color: #808080;
