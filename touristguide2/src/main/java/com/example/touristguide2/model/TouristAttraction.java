@@ -29,10 +29,7 @@ public class TouristAttraction {
 
     public String getDescription() {
         return description;
-    }
 
-    public String getLocation() {
-        return location;
     }
 
     public void setLocation(String location) {
@@ -45,9 +42,6 @@ public class TouristAttraction {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-    public void setLocation(String location) {
-        this.location = location;
     }
 
     public List<Tags> getTags() {

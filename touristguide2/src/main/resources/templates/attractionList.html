@@ -7,11 +7,12 @@
 <body>
 <h1>Registered Attractions: </h1>
 
-<table>
+<table border = "1">
     <thead>
     <tr th:if="${!attractions.isEmpty()}">
         <th>Name</th>
         <th>Description</th>
+        <th>Location</th>
     </tr>
     </thead>
     <tbody>
@@ -20,13 +21,38 @@
     </tr>
      <tr th:each="attraction : ${attractions}">
         <td th:text="${attraction.name}"></td>
-        <td th:text="${attraction.description}"></td>
-         <span th:each="tag : ${attraction.tags}" th:text="${tag}" th:append=", "></span>
+        <td th:text="${attraction.description}">
+            <span th:each="tag : ${attraction.tags}" th:text="${tag}" th:append=", "></span>
+        </td>
+         <td>
+             <a th:href="@{/{name}/edit(name=${attraction.name})}">
+                 <button type="button"> Edit </button>
+             </a>
+         </td>
 
-         <!-- <a th:href="@{/user/edit/{userId}(userId=${user.userId})}">Edit</a>  -->
+         <td th:text="">
+         </td>
+
+         <td>
+
+             <!-- where is daddy's table data?  -->
+
+         </td>
+
+
+
+
     </tr>
     </tbody>
 </table>
-<!--<a th:href="@{/user/register}">Register a user</a> -->
+
+<a th:href="@{/add}">
+    <button type="button"> Add Attraction </button>
+
+</a>
+
 </body>
 </html>
+
+<!--<a th:href="@{/user/register}">Register a user</a> -->
+<!-- <a th:href="@{/user/edit/{userId}(userId=${user.userId})}">Edit</a>  -->
