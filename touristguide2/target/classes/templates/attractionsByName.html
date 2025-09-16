@@ -1,27 +1,37 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Attraction Details</title>
+    <title>Attractions Detail</title>
+    <meta charset="utf-8">
     <link rel="stylesheet" href="/styles.css">
-
 </head>
 <body>
+<header>
+    <h1 th:text="${attraction.name}">Attraction Name</h1>
+</header>
 
-<h1 th:text="${attraction.name}">Attraction Name</h1>
+<section>
+    <nav>
+        <h4>Tags:</h4>
+        <table>
+            <tr th:each="tag : ${attraction.tags}">
+                <td th:text="${tag}">Tag</td>
+            </tr>
+        </table>
+    </nav>
 
-<h3 th:text="${'Location: ' + attraction.location}">Attraction location</h3>
+    <article>
+        <h3 th:text="${'Location: ' + attraction.location}">Attraction location</h3>
 
-<h3 th:text="${'Description: ' + attraction.description}">Attraction description</h3>
+        <h3 th:text="${'Description: ' + attraction.description}">Attraction description</h3>
+    </article>
+</section>
 
-<table>
-    <tr th:each="tag : ${attraction.tags}">
-        <td th:text="${tag}">Tag</td>
-    </tr>
-</table>
+<footer>
+    <button type="button" onclick="location.href='/attractions'">Return</button>
 
-<button type="button" onclick="location.href='/attractions'">Return</button>
-
+</footer>
 
 </body>
 </html>
+
