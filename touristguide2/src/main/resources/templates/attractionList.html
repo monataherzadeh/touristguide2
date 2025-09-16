@@ -7,18 +7,19 @@
     <!--<link rel="stylesheet" type="text/css" href="attractionListStyle.css">-->
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: Times New Roman, serif;
             margin: 20px;
             color: #1E441E;
         }
 
         h1 {
-            text-align: center;
+            text-align: left;
             margin-bottom: 15px;
+            padding-left: 20px;
         }
 
         table {
-            width: 100%;
+            width: 30%;
             margin-bottom: 15px;
         }
 
@@ -54,12 +55,13 @@
 <body>
 <h1>Registered Attractions: </h1>
 
-<table border = "1">
+<table border="1">
     <thead>
     <tr th:if="${!attractions.isEmpty()}">
         <th>Name</th>
         <th>Description</th>
         <th>Location</th>
+        <th>Actions</th>
     </tr>
     </thead>
 
@@ -67,7 +69,7 @@
     <tbody>
 
     <tr th:if="${attractions.isEmpty()}">
-    <td colspan="6">There are no attractions yet:(( </td>
+        <td colspan="6">There are no attractions yet:((</td>
     </tr>
 
     <tr th:each="attraction : ${attractions}">
@@ -77,25 +79,21 @@
             <span th:each="tag : ${attraction.tags}" th:text="${tag}" th:append=", "></span>
         </td>
         <td th:text="${attraction.location}"></td>
-         <td>
-             <a th:href="@{/{name}/edit(name=${attraction.name})}">
-                 <button type="button" class="edit-btn"> Edit </button>
-             </a>
-         </td>
 
+
+        <!-- the three buttons for 'edit', 'delete' and 'tags' -->
         <td>
-            <a th:href="@{/delete/{name}(name=${attraction.name})}">
-                <button type="button" class="delete-btn"> Delete </button>
+            <a th:href="@{/{name}/edit(name=${attraction.name})}">
+                <button type="button" class="edit-btn"> Edit</button>
             </a>
-        </td>
 
-         <td th:text>
-         </td>
+            <a th:href="@{/delete/{name}(name=${attraction.name})}">
+                <button type="button" class="delete-btn"> Delete</button>
+            </a>
 
-        <td>
-        <a th:href="@{/{name}(name=${attraction.name})}">
-            <button type="button"> Tags </button>
-        </a>
+            <a th:href="@{/{name}(name=${attraction.name})}">
+                <button type="button"> Tags</button>
+            </a>
         </td>
 
     </tr>
@@ -103,7 +101,7 @@
 </table>
 
 <a th:href="@{/add}">
-    <button type="button"> Add Attraction </button>
+    <button type="button"> Add Attraction</button>
 
 </a>
 
