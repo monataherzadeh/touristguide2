@@ -1,60 +1,86 @@
-a:focus,
-button:focus,
-input:focus {
-    outline: 2px solid #005fcc;
-    outline-offset: 2px;
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 body {
+    font-family: Arial, Helvetica, sans-serif;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    min-height: 100vh;
+}
+
+header {
+    background-color: white;
+    padding: 30px;
+    text-align: center;
+    font-size: 35px;
+    color: #1E441E;
+}
+
+
+section {
+    flex: 1;
+    display: -webkit-flex;
+    display: flex;
+}
+
+nav {
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    background: #553D36;
     padding: 20px;
-}
-
-h1{
-    text-align: center;
-    color: black;
-    text-shadow: 2px 2px 5px #00000033;
-}
-
-h2 {
-    text-align: center;
-    margin-top: 10px;
-}
-h3 {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 15px;
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    color: #C3B59F;
 }
 
 table {
-    width: 100%;
+
     border-collapse: collapse;
-    background-color: #fff;
-    box-shadow: 0 2px 5px #0000001A;
+    border-spacing: 0;
+    border: 5px solid #C3B59F;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-top: 50px;
+    width: 100%;
+    height: 70%;
+    box-shadow: 0 2px 8px #00000033;
+    text-align: center;
 }
 
-th, td {
-    padding: 15px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
 }
 
+article {
+    -webkit-flex: 3;
+    -ms-flex: 3;
+    flex: 3;
+    background-color: #C3B59F;
+    padding: 10px;
+    color: #553D36;
+}
+
+footer {
+    background-color: white;
+    padding: 10px;
+    text-align: center;
+}
 
 button {
-    background-color: #808080;
+    margin-top: 10px;
+    background-color: #1E441E;
     border: none;
     color: #f9f9f9;
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
-    margin-top: 30px;
     border-radius: 25px;
     transition-property: background-color;
     transition-duration: 0.3s;
@@ -62,7 +88,14 @@ button {
 }
 
 button:hover {
-    background-color: black;
+    background-color: #D6A2AD;
     box-shadow: 0 4px 12px #00000033;
 }
 
+
+@media (max-width: 600px) {
+    section {
+        -webkit-flex-direction: column;
+        flex-direction: column;
+    }
+}
