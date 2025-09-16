@@ -24,8 +24,8 @@ public class TouristAttraction {
 
     public String getDescription() {
         return description;
-    }
 
+    }
     public String getLocation() {
         return location;
     }
