@@ -21,8 +21,8 @@ public class TouristController {
 
     @GetMapping
     public String showAllAttractions(Model model) {
-        List<TouristAttraction> attraction = touristService.getAllAttractions();
-        model.addAttribute("attraction", attraction);
+        List<TouristAttraction> attractions = touristService.getAllAttractions();
+        model.addAttribute("attractions", attractions);
         return "attractionList";
     }
 
@@ -55,6 +55,8 @@ public class TouristController {
         return "redirect:/attractions";
     }
 
+    //The allTags key-value pair is not about the current state of the attraction, it’s about giving the view all possible options that the user can choose from.
+    //the specific URL with the specific name field is accessed by a link in a former webpage
     @GetMapping("/{name}/edit")
     public String editAttraction(@PathVariable String name, Model model) {
         TouristAttraction attraction = touristService.getAttractionsByName(name);
@@ -75,13 +77,13 @@ public class TouristController {
                 attraction.getDescription(),
                 attraction.getTags(),
                 attraction.getLocation());
-        return "redirect:/attractions";
+        return "redirect:/attractionList";
     }
-
+    //When the object is deleted, the client is in the same instance sent to the 'same' view, but with @GetMapping, showAllAttractions(Model model) controller method called again with new list of TouristAttraction objects displayed.
     @PostMapping("/delete/{name}")
     public String deleteAttraction(@PathVariable String name) {
         touristService.deleteAttraction(name);
-        return "redirect:/attractions";
+        return "redirect:/attractionList";
     }
 }
 

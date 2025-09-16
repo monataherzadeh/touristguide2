@@ -22,7 +22,7 @@ public class TouristService {
     }
 
     public ArrayList<TouristAttraction> getAllAttractions() {
-        return repository.getAllAttractions();
+        return repository.getAllAttractionsRepo();
     }
 
     public TouristAttraction getAttractionsByName(String name) {

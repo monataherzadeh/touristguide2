@@ -24,7 +24,7 @@ public class TouristRepository {
         return newTouristAttraction;
     }
 
-    public ArrayList<TouristAttraction> getAllAttractions() {
+    public ArrayList<TouristAttraction> getAllAttractionsRepo() {
         return attractions;
     }
 
