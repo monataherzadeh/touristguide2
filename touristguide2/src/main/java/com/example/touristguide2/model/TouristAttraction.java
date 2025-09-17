@@ -49,5 +49,4 @@ public class TouristAttraction {
     public void setTags(List<Tags> tags) {
         this.tags = tags;
     }
-
 }
