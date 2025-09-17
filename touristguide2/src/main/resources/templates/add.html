@@ -10,7 +10,6 @@
             display: block;
             font-weight: bold;
             margin-bottom: 5px;
-            color: #1E441E;
         }
 
         input[type="text"],
@@ -26,8 +25,17 @@
         }
 
         button {
-            padding: 2px 8px;
-            margin-right: 5px;
+            background-color: #808080;
+            border: none;
+            color: #f9f9f9;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 30px;
+            border-radius: 25px;
+            transition-property: background-color;
+            transition-duration: 0.3s;
+            transition-timing-function: ease;
         }
     </style>
 
@@ -53,7 +61,7 @@
         <label>Tags</label><br/>
         <div th:each="tag : ${allTags}" style="display:inline-block; margin-right:10px;">
             <label>
-                <input type="checkbox" th:value="${tag.id}" th:field="*{tags}"/>
+                <input type="checkbox" th:value="${tag}" th:field="*{tags}"/>
                 <span th:text="${tag.name}"></span>
             </label>
         </div>
@@ -68,3 +76,4 @@
 
 </body>
 </html>
+
