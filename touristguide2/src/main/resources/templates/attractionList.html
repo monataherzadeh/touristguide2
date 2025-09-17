@@ -40,10 +40,11 @@
         </td>
 
         <td>
-            <a th:href="@{/attractions/{name}(name=${attraction.name})}">
+            <a th:href="@{/attractions/{name}/tags(name=${attraction.name})}">
             <button type="button"> Tags</button>
         </a>
         </td>
+
     </tr>
 </table>
 <a th:href="@{attractions/add}">
