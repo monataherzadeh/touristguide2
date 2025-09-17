@@ -22,6 +22,11 @@
     </div>
 
     <div>
+        <label for="location">State</label>
+        <input type="text" id="location" th:field="*{location}" placeholder="Enter state"/>
+    </div>
+
+    <div>
         <label>Tags</label><br/>
         <div th:each="tag : ${allTags}" style="display:inline-block; margin-right:10px;">
             <label>
