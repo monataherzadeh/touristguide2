@@ -73,26 +73,6 @@ footer {
     text-align: center;
 }
 
-button {
-    margin-top: 10px;
-    background-color: #1E441E;
-    border: none;
-    color: #f9f9f9;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 25px;
-    transition-property: background-color;
-    transition-duration: 0.3s;
-    transition-timing-function: ease;
-}
-
-button:hover {
-    background-color: #D6A2AD;
-    box-shadow: 0 4px 12px #00000033;
-}
-
-
 @media (max-width: 600px) {
     section {
         -webkit-flex-direction: column;

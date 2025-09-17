@@ -1,8 +1,8 @@
-<style>
 body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
-    color: #333;
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+    color: #1E441E;
 }
 
 h1 {
@@ -18,48 +18,12 @@ table {
 
 th, td {
     padding: 8px 12px;
-    border: 1px solid #aaa;
+    border: 1px solid;
     text-align: left;
+    color: #1E441E;
 }
 
 th {
-    background-color: #eee;
+    background-color: #553D36;
+    color: #C3B59F;
 }
-
-tr:hover {
-    background-color: #f5f5f5;
-}
-
-button {
-    padding: 5px 10px;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-    font-size: 0.9rem;
-}
-
-.edit-btn {
-    background-color: #5a9bf6;
-    color: white;
-}
-
-.delete-btn {
-    background-color: #f56565;
-    color: white;
-}
-
-.tags-btn {
-    background-color: #48bb78;
-    color: white;
-}
-
-.add-btn {
-    background-color: #a0aec0;
-    color: white;
-}
-
-a button {
-    margin-right: 5px;
-}
-
-</style>

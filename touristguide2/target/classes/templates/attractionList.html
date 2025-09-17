@@ -2,113 +2,53 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Wonderful attractions to visit as tourist: </title>
-    <!--<link th:href="@{/attractionListStyle.css}" rel="stylesheet">-->
-    <!--<link rel="stylesheet" type="text/css" href="attractionListStyle.css">-->
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            color: #1E441E;
-        }
-
-        h1 {
-            text-align: center;
-            margin-bottom: 15px;
-        }
-
-        table {
-            width: 100%;
-            margin-bottom: 15px;
-        }
-
-        th, td {
-            padding: 6px 10px;
-            border: 1px solid #aaa;
-            text-align: left;
-        }
-
-        th {
-            background-color: #eee;
-        }
-
-        tr:hover {
-            background-color: #f5f5f5;
-        }
-
-        div.button-group {
-            margin-bottom: 15px;
-        }
-
-        button {
-            padding: 2px 8px;
-            margin-right: 5px;
-            border: 1px solid #aaa;
-            background-color: #f0f0f0;
-            cursor: pointer;
-            font-size: 0.85rem;
-        }
-    </style>
+    <title>Tourist attractions</title>
+    <link rel="stylesheet" href="/attractionListStyle.css">
+    <link rel="stylesheet" href="/common.css">
 
 </head>
 <body>
-<h1>Registered Attractions: </h1>
+<h1>Tourist Attractions</h1>
 
-<table border = "1">
-    <thead>
-    <tr th:if="${!attractions.isEmpty()}">
+<table style="width:100%">
+    <tr>
         <th>Name</th>
         <th>Description</th>
-        <th>Location</th>
+        <th>State</th>
+        <th>📝</th>
+        <th>♻︎</th>
+        <th>🏷️</th>
+
     </tr>
-    </thead>
-
-
-    <tbody>
-
-    <tr th:if="${attractions.isEmpty()}">
-    <td colspan="6">There are no attractions yet:(( </td>
-    </tr>
-
     <tr th:each="attraction : ${attractions}">
-        <td th:text="${attraction.name}"></td>
+        <td th:text="${attraction.name}">Name</td>
+        <td th:text="${attraction.description}">Description</td>
+        <td th:text="${attraction.location}">State</td>
         <td>
-            <span th:text="${attraction.description}"></span>
-            <span th:each="tag : ${attraction.tags}" th:text="${tag}" th:append=", "></span>
-        </td>
-        <td th:text="${attraction.location}"></td>
-         <td>
-             <a th:href="@{/{name}/edit(name=${attraction.name})}">
-                 <button type="button" class="edit-btn"> Edit </button>
-             </a>
-         </td>
-
-        <td>
-            <a th:href="@{/delete/{name}(name=${attraction.name})}">
-                <button type="button" class="delete-btn"> Delete </button>
+            <a th:href="@{/attractions/{name}/edit(name=${attraction.name})}">
+                <button type="button" class="edit-btn"> Edit</button>
             </a>
         </td>
 
-         <td th:text>
-         </td>
-
         <td>
-        <a th:href="@{/{name}(name=${attraction.name})}">
-            <button type="button"> Tags </button>
-        </a>
+            <form th:action="@{/attractions/delete/{name}(name=${attraction.name})}" method="post">
+
+              <button type="submit">Delete</button>
+            </form>
+
+
         </td>
 
+        <td>
+            <a th:href="@{/attractions/{name}(name=${attraction.name})}">
+            <button type="button"> Tags</button>
+        </a>
+        </td>
     </tr>
-    </tbody>
 </table>
-
-<a th:href="@{/add}">
-    <button type="button"> Add Attraction </button>
+<a th:href="@{attractions/add}">
+    <button type="button"> Add Attraction</button>
 
 </a>
-
 </body>
 </html>
-
-<!--<a th:href="@{/user/register}">Register a user</a> -->
-<!-- <a th:href="@{/user/edit/{userId}(userId=${user.userId})}">Edit</a>  -->
