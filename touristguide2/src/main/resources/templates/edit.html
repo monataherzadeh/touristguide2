@@ -3,13 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <title>Edit Tourist Attraction</title>
+    <!-- <link th:href="@{/editStylesheet.css}" rel="stylesheet"> -->
+    <link rel="stylesheet" th:href="@{/editStyleshee.css}">
+    <style>
+
+        h1 {
+            color: #1E441E;
+
+        }
+
+        form div {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #1E441E;
+        }
+
+        input[type="text"],
+        textarea {
+            display: block;
+            width: 300px;
+            padding: 5px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+        }
+
+        textarea {
+            height: 80px;
+            resize: none;
+        }
+
+
+    </style>
 </head>
 <body>
 <h1>Edit Tourist Attraction</h1>
 
 <form th:action="@{/attractions/update}" th:object="${attraction}" method="post">
 
-    <input type="hidden" th:field="*{location}" />
+    <input type="hidden" th:field="*{location}"/>
 
     <div>
         <label for="name">Name:</label>
