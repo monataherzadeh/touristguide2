@@ -24,10 +24,17 @@
     </div>
 
     <div>
-        <label>Tags:</label><br/>
-        <div style="display:flex; gap:10px;" th:each="tag,iterStat : ${allTags}">
-            <input type="checkbox" th:id="'tag-' + ${iterStat.index}" th:value="${tag}" th:field="*{tags}"/>
-            <label th:for="'tag-' + ${iterStat.index}" th:text="${tag}"></label>
+        <label for="location">State</label>
+        <input type="text" id="location" th:field="*{location}" placeholder="Enter state"/>
+    </div>
+
+    <div>
+        <label>Tags</label><br/>
+        <div th:each="tag : ${allTags}" style="display:inline-block; margin-right:10px;">
+            <label>
+                <input type="checkbox" th:value="${tag}" th:field="*{tags}"/>
+                <span th:text="${tag.name}"></span>
+            </label>
         </div>
     </div>
 
