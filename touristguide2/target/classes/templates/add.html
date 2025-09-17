@@ -25,17 +25,22 @@
         }
 
         button {
-            background-color: #808080;
+            margin-top: 10px;
+            background-color: #1E441E;
             border: none;
             color: #f9f9f9;
             padding: 10px 20px;
             font-size: 16px;
             cursor: pointer;
-            margin-top: 30px;
             border-radius: 25px;
             transition-property: background-color;
             transition-duration: 0.3s;
             transition-timing-function: ease;
+        }
+
+        button:hover {
+            background-color: #D6A2AD;
+            box-shadow: 0 4px 12px #00000033;
         }
     </style>
 
@@ -45,7 +50,7 @@
 <body>
 <h1>Add a new Tourist Attraction</h1>
 
-<form th:action="@{/attractions/save}" th:object="${attraction}" method="post">
+<form th:action="@{/save}" th:object="${attraction}" method="post">
 
     <div>
         <label for="name">Name</label>
@@ -68,8 +73,8 @@
     </div>
 
     <div>
-            <button type="submit">Ok</button>
-            <button type="button" onclick="location.href='/attractions'">Cancel</button>
+        <button type="submit">OK</button>
+        <button type="button" onclick="location.href='/'">Cancel</button>
     </div>
 
 </form>
