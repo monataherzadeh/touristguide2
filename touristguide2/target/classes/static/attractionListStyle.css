@@ -1,0 +1,32 @@
+a {
+    color: #1E441E;
+}
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+    color: #1E441E;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 15px;
+}
+
+th, td {
+    padding: 8px 12px;
+    border: 1px solid;
+    text-align: left;
+    color: #1E441E;
+}
+
+th {
+    background-color: #553D36;
+    color: #C3B59F;
+}
