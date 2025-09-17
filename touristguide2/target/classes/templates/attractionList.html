@@ -21,7 +21,11 @@
 
     </tr>
     <tr th:each="attraction : ${attractions}">
-        <td th:text="${attraction.name}">Name</td>
+        <td>
+            <a th:href="@{/attractions/{name}(name=${attraction.name})}" th:text="${attraction.name}">
+            </a>
+
+        </td>
         <td th:text="${attraction.description}">Description</td>
         <td th:text="${attraction.location}">State</td>
         <td>
