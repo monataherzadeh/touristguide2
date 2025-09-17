@@ -21,7 +21,11 @@
 
     </tr>
     <tr th:each="attraction : ${attractions}">
-        <td th:text="${attraction.name}">Name</td>
+        <td>
+            <a th:href="@{/attractions/{name}(name=${attraction.name})}" th:text="${attraction.name}">
+            </a>
+
+        </td>
         <td th:text="${attraction.description}">Description</td>
         <td th:text="${attraction.location}">State</td>
         <td>
@@ -35,8 +39,6 @@
 
               <button type="submit">Delete</button>
             </form>
-
-
         </td>
 
         <td>
@@ -49,7 +51,6 @@
 </table>
 <a th:href="@{attractions/add}">
     <button type="button"> Add Attraction</button>
-
 </a>
 </body>
 </html>
