@@ -77,13 +77,13 @@ public class TouristController {
                 attraction.getDescription(),
                 attraction.getTags(),
                 attraction.getLocation());
-        return "redirect:/attractionList";
+        return "redirect:/attractions";
     }
     //When the object is deleted, the client is in the same instance sent to the 'same' view, but with @GetMapping, showAllAttractions(Model model) controller method called again with new list of TouristAttraction objects displayed.
     @PostMapping("/delete/{name}")
     public String deleteAttraction(@PathVariable String name) {
         touristService.deleteAttraction(name);
-        return "redirect:/attractionList";
+        return "redirect:/attractions";
     }
 }
 
