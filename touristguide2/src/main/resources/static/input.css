@@ -1,3 +1,25 @@
+
+.buttonRow {
+    display: flex;
+    gap: 10px
+}
+
+#submitButton, #cancelButton {
+    font-family: Times New Roman;
+    padding: 6px;
+    border: 1px solid #ccc;
+    margin-top: 10px;
+    background: #eee;
+    border-radius: 25px;
+    text-decoration: none;
+    color: #f9f9f9;
+    cursor: pointer;
+    background-color: #1E441E;
+    transition-property: background-color;
+    transition-duration: 0.3s;
+    transition-timing-function: ease;
+}
+
 form div {
     margin-bottom: 15px;
 }
