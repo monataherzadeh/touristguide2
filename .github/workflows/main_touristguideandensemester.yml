@@ -18,6 +18,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: List files
+        run: ls -R
+
       - name: Set up Java version
         uses: actions/setup-java@v4
         with:
@@ -62,4 +65,5 @@ jobs:
           app-name: 'touristguideandensemester'
           slot-name: 'Production'
           package: '*.jar'
+
 
