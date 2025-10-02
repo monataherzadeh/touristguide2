@@ -1,4 +1,4 @@
-# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
+# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
 name: Build and deploy JAR app to Azure Web App - touristguideandensemester
@@ -16,23 +16,26 @@ jobs:
       contents: read # Required for actions/checkout
 
     steps:
+      # Tjek ud koden
       - uses: actions/checkout@v4
 
-      - name: List files
+      # Udskriv filstrukturen til debugging
+      - name: Show directory structure
         run: ls -R
 
+      # Sæt Java op
       - name: Set up Java version
         uses: actions/setup-java@v4
         with:
           java-version: '21'
           distribution: 'microsoft'
 
+      # Byg med Maven i repo-roden
       - name: Build with Maven
         run: mvn -B clean install
         working-directory: ${{ github.workspace }}
 
-
-
+      # Upload artifact til deploy job
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
@@ -47,11 +50,13 @@ jobs:
       contents: read # Required for actions/checkout
 
     steps:
+      # Download artifact fra build
       - name: Download artifact from build job
         uses: actions/download-artifact@v4
         with:
           name: java-app
 
+      # Login til Azure
       - name: Login to Azure
         uses: azure/login@v2
         with:
@@ -59,6 +64,7 @@ jobs:
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_4638540B00F340D5B1A015461BB386B8 }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_B82C9AC915F84659BFAB334C3C757123 }}
 
+      # Deploy til Azure Web App
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
@@ -66,7 +72,5 @@ jobs:
           app-name: 'touristguideandensemester'
           slot-name: 'Production'
           package: '*.jar'
-
-
 
 
