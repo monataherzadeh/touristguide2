@@ -34,12 +34,12 @@ jobs:
       - name: Build with Maven
         run: mvn -B clean install -f $(find . -name "pom.xml" -maxdepth 2)
 
-      # Upload artifact til deploy job
+      # Upload artifact til deploy job (finder target/ relativt til pom.xml)
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: java-app
-          path: 'target/*.jar'
+          path: $(dirname $(find . -name "pom.xml" -maxdepth 2))/target/*.jar
 
   deploy:
     runs-on: ubuntu-latest
