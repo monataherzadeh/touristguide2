@@ -30,16 +30,16 @@ jobs:
           java-version: '21'
           distribution: 'microsoft'
 
-      # Byg med Maven og find automatisk pom.xml
+      # Byg med Maven
       - name: Build with Maven
-        run: mvn -B clean install -f $(find . -name "pom.xml" -maxdepth 2)
+        run: mvn -B clean install
 
-      # Upload artifact til deploy job (finder target/ relativt til pom.xml)
+      # Upload artifact til deploy job
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: java-app
-          path: $(dirname $(find . -name "pom.xml" -maxdepth 2))/target/*.jar
+          path: target/touristguide2-0.0.1-SNAPSHOT.jar
 
   deploy:
     runs-on: ubuntu-latest
@@ -70,4 +70,4 @@ jobs:
         with:
           app-name: 'touristguideandensemester'
           slot-name: 'Production'
-          package: '*.jar'
+          package: target/touristguide2-0.0.1-SNAPSHOT.jar
