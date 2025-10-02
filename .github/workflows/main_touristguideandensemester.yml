@@ -1,4 +1,4 @@
-# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
+# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
 name: Build and deploy JAR app to Azure Web App - touristguideandensemester
@@ -19,7 +19,7 @@ jobs:
       # Tjek ud koden
       - uses: actions/checkout@v4
 
-      # Udskriv filstrukturen til debugging
+      # Udskriv filstruktur til debugging
       - name: Show directory structure
         run: ls -R
 
@@ -30,17 +30,16 @@ jobs:
           java-version: '21'
           distribution: 'microsoft'
 
-      # Byg med Maven i repo-roden
+      # Byg med Maven og find automatisk pom.xml
       - name: Build with Maven
-        run: mvn -B clean install
-        working-directory: ${{ github.workspace }}
+        run: mvn -B clean install -f $(find . -name "pom.xml" -maxdepth 2)
 
       # Upload artifact til deploy job
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: java-app
-          path: '${{ github.workspace }}/target/*.jar'
+          path: 'target/*.jar'
 
   deploy:
     runs-on: ubuntu-latest
@@ -72,5 +71,3 @@ jobs:
           app-name: 'touristguideandensemester'
           slot-name: 'Production'
           package: '*.jar'
-
-
