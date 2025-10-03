@@ -15,26 +15,25 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Show directory structure
+        run: ls -R
+
       - name: Set up Java version
         uses: actions/setup-java@v4
         with:
           java-version: '21'
           distribution: 'microsoft'
 
-      # Byg med Maven
-      - name: Build with Maven
-        run: mvn -B clean install
+      # Maven med fuld debug-output
+      - name: Build with Maven (debug)
+        run: mvn -e -X clean install -f $(find . -name "pom.xml" -maxdepth 2)
 
-      # Debug: vis alle JAR filer
-      - name: List built JARs
-        run: find . -type f -name "*.jar"
-
-      # Upload JAR artifact
       - name: Upload artifact for deployment job
+        if: success() # kun hvis build lykkes
         uses: actions/upload-artifact@v4
         with:
           name: java-app
-          path: target/*.jar
+          path: $(dirname $(find . -name "pom.xml" -maxdepth 2))/target/*.jar
 
   deploy:
     runs-on: ubuntu-latest
@@ -57,6 +56,7 @@ jobs:
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_B82C9AC915F84659BFAB334C3C757123 }}
 
       - name: Deploy to Azure Web App
+        if: success()
         uses: azure/webapps-deploy@v3
         with:
           app-name: 'touristguideandensemester'
