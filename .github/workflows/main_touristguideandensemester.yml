@@ -24,16 +24,16 @@ jobs:
           java-version: '21'
           distribution: 'microsoft'
 
-      # Maven med fuld debug-output
-      - name: Build with Maven (debug)
-        run: mvn -e -X clean install -f $(find . -name "pom.xml" -maxdepth 2)
+      # Byg JAR
+      - name: Build with Maven
+        run: mvn -B clean package -f pom.xml
 
+      # Upload JAR artifact
       - name: Upload artifact for deployment job
-        if: success() # kun hvis build lykkes
         uses: actions/upload-artifact@v4
         with:
           name: java-app
-          path: $(dirname $(find . -name "pom.xml" -maxdepth 2))/target/*.jar
+          path: target/*.jar
 
   deploy:
     runs-on: ubuntu-latest
@@ -56,7 +56,6 @@ jobs:
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_B82C9AC915F84659BFAB334C3C757123 }}
 
       - name: Deploy to Azure Web App
-        if: success()
         uses: azure/webapps-deploy@v3
         with:
           app-name: 'touristguideandensemester'
