@@ -15,27 +15,26 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Show directory structure
-        run: ls -R
-
       - name: Set up Java version
         uses: actions/setup-java@v4
         with:
           java-version: '21'
           distribution: 'microsoft'
 
+      # Byg med Maven
       - name: Build with Maven
-        run: mvn -B clean install -f $(find . -name "pom.xml" -maxdepth 2)
+        run: mvn -B clean install
 
-      # 👇 Debug: find hvor JAR’en blev genereret
-      - name: List target files
+      # Debug: vis alle JAR filer
+      - name: List built JARs
         run: find . -type f -name "*.jar"
 
+      # Upload JAR artifact
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: java-app
-          path: $(find . -type f -name "*.jar" -path "*/target/*" -maxdepth 4)
+          path: target/*.jar
 
   deploy:
     runs-on: ubuntu-latest
@@ -50,9 +49,6 @@ jobs:
         with:
           name: java-app
 
-      - name: Show downloaded files
-        run: ls -R
-
       - name: Login to Azure
         uses: azure/login@v2
         with:
@@ -66,4 +62,3 @@ jobs:
           app-name: 'touristguideandensemester'
           slot-name: 'Production'
           package: '*.jar'
-
