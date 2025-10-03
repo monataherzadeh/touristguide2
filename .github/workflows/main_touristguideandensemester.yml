@@ -24,7 +24,6 @@ jobs:
           java-version: '21'
           distribution: 'microsoft'
 
-      # Korrekt working-directory til pom.xml
       - name: Build with Maven
         working-directory: touristguide2
         run: mvn -B clean package
@@ -48,6 +47,9 @@ jobs:
         with:
           name: java-app
 
+      - name: Show downloaded files
+        run: ls -R  
+
       - name: Login to Azure
         uses: azure/login@v2
         with:
@@ -60,4 +62,4 @@ jobs:
         with:
           app-name: 'touristguideandensemester'
           slot-name: 'Production'
-          package: java-app/*.jar
+          package: '*.jar'
