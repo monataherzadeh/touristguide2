@@ -5,6 +5,7 @@
 }
 
 #submitButton, #cancelButton {
+    font-family: Times New Roman;
     padding: 6px;
     border: 1px solid #ccc;
     margin-top: 10px;
