@@ -1,7 +1,6 @@
 package com.example.touristguide2.controller;
 
 
-import com.example.touristguide2.model.Tags;
 import com.example.touristguide2.model.TouristAttraction;
 import com.example.touristguide2.service.TouristService;
 import org.springframework.stereotype.Controller;
@@ -45,7 +44,6 @@ public class TouristController {
     public String addAttraction(Model model) {
         TouristAttraction attraction = new TouristAttraction();
         model.addAttribute("attraction", attraction);
-        model.addAttribute("allTags", Tags.values());
         return "add";
     }
 
@@ -64,7 +62,6 @@ public class TouristController {
             throw new IllegalArgumentException("Invalid attraction name: " + name);
         }
         model.addAttribute("attraction", attraction);
-        model.addAttribute("allTags", Tags.values());
         return "edit";
     }
 
@@ -72,7 +69,7 @@ public class TouristController {
     //Its getters will return the new user-supplied values.
     @PostMapping("/update")
     public String updateAttraction(@ModelAttribute TouristAttraction attraction) {
-        touristService.updateAttractionBoolean(
+        touristService.updateAttraction(
                 attraction.getName(),
                 attraction.getDescription(),
                 attraction.getTags(),
