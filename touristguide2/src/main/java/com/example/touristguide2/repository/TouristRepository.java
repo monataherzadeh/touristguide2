@@ -50,11 +50,21 @@ public class TouristRepository {
         return jdbcTemplate.queryForObject(sql, rowMapper, name);
     }
 
+
     //update attraction and return the attraction with renewed data for its fields
     public void updateAttraction(String name, String description, String tags, String location) {
         String sql = "UPDATE Attraction SET Name = ? WHERE Name = ?";
         jdbcTemplate.update(sql, name);
     }
+    //version of updateAttraction() method where just the object is passed into the method signature, and the row to be
+    //updated is identified by its id.
+    //public void updateAttraction(TouristAttraction attraction) {
+        //String sql = "UPDATE Attraction SET Name = ?, Description = ?, Tags = ?, Location = ? WHERE id = ?";
+        //jdbcTemplate.update(sql, attraction.getName(), attraction.getDescription(),
+      //          attraction.getTags(), attraction.getLocation(), attraction.getId());
+    //}
+
+
 
     //name kommer fra UI/fra view, med controller der modtager dette name værdi.
     public TouristAttraction deleteAttraction(String name) {
