@@ -56,13 +56,13 @@ public class TouristRepository {
         String sql = "UPDATE Attraction SET Name = ? WHERE Name = ?";
         jdbcTemplate.update(sql, name);
     }
-    //version of updateAttraction() method where just the object is passed into the method signature, and the row to be
+    //Alternative version of updateAttraction() method where just the object is passed into the method signature, and the row to be
     //updated is identified by its id.
-    //public void updateAttraction(TouristAttraction attraction) {
-        //String sql = "UPDATE Attraction SET Name = ?, Description = ?, Tags = ?, Location = ? WHERE id = ?";
-        //jdbcTemplate.update(sql, attraction.getName(), attraction.getDescription(),
-      //          attraction.getTags(), attraction.getLocation(), attraction.getId());
-    //}
+    public void updateAttractionWithID(TouristAttraction attraction) {
+        String sql = "UPDATE Attraction SET Name = ?, Description = ?, Tags = ?, Location = ? WHERE id = ?";
+        jdbcTemplate.update(sql, attraction.getName(), attraction.getDescription(),
+                attraction.getTags(), attraction.getLocation(), attraction.getId());
+    }
 
 
 
