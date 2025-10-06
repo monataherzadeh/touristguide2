@@ -29,7 +29,8 @@ public class TouristRepository {
         attraction.setLocation(rs.getString("Location"));
         return attraction;
     };
-
+    //The TouristRepository constructor has jdbc template assigned, since there is no need to create an instance of jdbcTemplate in the repository class, but is instead injected from outside the class by using Spring which handles the injection.
+    //This is constructor injection.
     public TouristRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
@@ -78,4 +79,7 @@ public class TouristRepository {
             return null;
         }
     }
+
+
+
 }
