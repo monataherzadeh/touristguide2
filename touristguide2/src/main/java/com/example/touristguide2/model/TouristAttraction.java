@@ -7,15 +7,17 @@ public class TouristAttraction {
     private String description;
     private String tags;
     private String location;
+    //private int id;
 
     public TouristAttraction() {
     }
 
-    public TouristAttraction(String name, String description, String tags, String location) {
+    public TouristAttraction(String name, String description, String tags, String location /*,int id*/) {
         this.name = name;
         this.description = description;
         this.tags = tags;
         this.location = location;
+        //this.id = id;
     }
 
     public String getName() {
@@ -48,5 +50,11 @@ public class TouristAttraction {
 
     public void setTags(String tags) {
         this.tags = tags;
+    }
+    public void getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
     }
 }
