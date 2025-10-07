@@ -1,0 +1,5 @@
+com/example/touristguide2/Touristguide2Application.class
+com/example/touristguide2/service/TouristService.class
+com/example/touristguide2/model/TouristAttraction.class
+com/example/touristguide2/controller/TouristController.class
+com/example/touristguide2/repository/TouristRepository.class
