@@ -11,6 +11,6 @@ CREATE TABLE person (
 
 
 -- init-data
-INSERT INTO person (id, name, description, tags, location) VALUES (1, 'Joshua Tree Park', 'A lovely, but deserty attraction', ,'CA');
-INSERT INTO person (id, name, description, tags, location) VALUES (1, 'Yellow Stone Nation Park', 'Yellow Stone Park is abundant i wildlife', 'WY');
-INSERT INTO person (id, name, description, tags, location) VALUES (1, 'Grand Canoyon', 'Very steep sometimes',  , 'AZ');
+INSERT INTO TouristAttraction (id, name, description, tags, location) VALUES (1, 'Joshua Tree Park', 'A lovely, but deserty attraction', ,'CA');
+INSERT INTO TouristAttraction (id, name, description, tags, location) VALUES (2, 'Yellow Stone Nation Park', 'Yellow Stone Park is abundant i wildlife', List.of('Desert', 'Hiking') 'WY');
+INSERT INTO TouristAttraction (id, name, description, tags, location) VALUES (3, 'Grand Canyon', 'Very steep sometimes',  , 'AZ');
