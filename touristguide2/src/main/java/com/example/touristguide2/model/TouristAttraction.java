@@ -5,19 +5,19 @@ import java.util.List;
 public class TouristAttraction {
     private String name;
     private String description;
-    private String tags;
+    private List<String> tags;
     private String location;
-    //private int id;
+    private int id;
 
     public TouristAttraction() {
     }
 
-    public TouristAttraction(String name, String description, String tags, String location /*,int id*/) {
+    public TouristAttraction(String name, String description, List<String> tags, String location, int id) {
         this.name = name;
         this.description = description;
         this.tags = tags;
         this.location = location;
-        //this.id = id;
+        this.id = id;
     }
 
     public String getName() {
@@ -44,14 +44,14 @@ public class TouristAttraction {
         this.description = description;
     }
 
-    public String getTags() {
+    public List<String> getTags() {
         return tags;
     }
 
-    public void setTags(String tags) {
+    public void setTags(List<String> tags) {
         this.tags = tags;
     }
-    public void getId() {
+    public int getId() {
         return id;
     }
     public void setId(int id) {
