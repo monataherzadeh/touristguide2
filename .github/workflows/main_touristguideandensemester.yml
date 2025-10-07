@@ -25,6 +25,11 @@ jobs:
           distribution: 'temurin'
 
       - name: Build with Maven
+        env: 
+          PROD_DATABASE_URL: ${{secrets.PROD_DATABASE_URL}}
+          PROD_USERNAME: ${{secrets.PROD_USERNAME}}
+          PROD_PASSWORD: ${{secrets.PROD_PASSWORD}}
+        
         working-directory: touristguide2
         run: mvn -B clean package
 
@@ -32,7 +37,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: java-app
-          path: touristguide2/target/*.jar
+          path: '${{ github.workspace}}/target/*.jar'
 
   deploy:
     runs-on: ubuntu-latest
@@ -64,3 +69,4 @@ jobs:
           app-name: 'touristguideandensemester'
           slot-name: 'Production'
           package: 'downloaded-artifact/*.jar'
+
