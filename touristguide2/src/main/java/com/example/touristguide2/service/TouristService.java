@@ -27,9 +27,9 @@ public class TouristService {
         return repository.getAttractionByName(park);
     }
 
-    public TouristAttraction updateAttraction(String park, String info, List<String> tags, String location) {
-        repository.updateAttraction(park, info, tags,location);
-        return repository.getAttractionByName(park);
+    public TouristAttraction updateAttraction(TouristAttraction attraction) {
+        repository.updateAttractionWithID(attraction);
+        return repository.getAttractionById(attraction.getId());
     }
 
     public TouristAttraction deleteAttraction(String park) {
