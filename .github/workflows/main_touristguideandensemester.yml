@@ -37,7 +37,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: java-app
-          path: '${{ github.workspace}}/target/*.jar'
+          path: '${{ github.workspace}}/touristguide2/target/*.jar'
 
   deploy:
     runs-on: ubuntu-latest
@@ -69,4 +69,5 @@ jobs:
           app-name: 'touristguideandensemester'
           slot-name: 'Production'
           package: 'downloaded-artifact/*.jar'
+
 
