@@ -66,8 +66,9 @@ jobs:
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'touristguideandensemester'
+          app-name: 'touristguide2025-ehbxgvaddzh5b6ah'
           package: 'downloaded-artifact/*.jar'
+
 
 
 
