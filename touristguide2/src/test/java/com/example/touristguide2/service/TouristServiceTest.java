@@ -8,45 +8,45 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 import static org.mockito.Mockito.verify;
 
+@ExtendWith(MockitoExtension.class)
 class TouristServiceTest {
-
-    @ExtendWith(MockitoExtension.class) // Tells JUnit to enable Mockito
-
     @Mock
     private TouristRepository repository;
 
     @InjectMocks
     private TouristService service;
 
-    //This test, tests wether the method returns a TouristAttraction object.
     @Test
     void updateAttraction_updatesAndReturnsUpdatedAttraction() {
-        //Simple test style arrangement of the fields in a simulatd object.
-        String name = "Joshua Tree Park";
-        String description = "A fantastic park in the desert";
-        String tags = "Hiking";
-        String location = "WY";
+        TouristAttraction attraction = new TouristAttraction();
+        attraction.setId(1); // antager at ID er nødvendigt for at hente den opdaterede attraction
+        attraction.setPark("Joshua Tree Park");
+        attraction.setInfo("A fantastic park in the desert");
+        attraction.setTags(List.of("Hiking", "desert"));
+        attraction.setLocation("WY");
 
-        TouristAttraction updatedAttraction = new TouristAttraction(name, description, tags, location);
+        TouristAttraction updatedAttraction = new TouristAttraction();
+        updatedAttraction.setId(1);
+        updatedAttraction.setPark("Joshua Tree Park");
+        updatedAttraction.setInfo("A fantastic park in the desert");
+        updatedAttraction.setTags(List.of("Hiking","desert"));
+        updatedAttraction.setLocation("WY");
 
-        //The Mock's behavior defined below:
-        doNothing().when(repository).updateAttraction(name, description, tags, location);
-        when(repository.getAttractionByName(name)).thenReturn(updatedAttraction);
+        // Act
+        doNothing().when(repository).updateAttractionWithID(attraction);
+        when(repository.getAttractionById(1)).thenReturn(updatedAttraction);
 
-        //The result of the performance of the method in question:
-        TouristAttraction result = service.updateAttraction(name, description, tags, location);
+        TouristAttraction result = service.updateAttraction(attraction);
 
-        //
-        verify(repository).updateAttraction(name, description, tags, location);
-        verify(repository).getAttractionByName(name);
-
+        // Assert
+        verify(repository).updateAttractionWithID(attraction);
+        verify(repository).getAttractionById(1);
         assertEquals(updatedAttraction, result);
-
-
-
     }
 }
