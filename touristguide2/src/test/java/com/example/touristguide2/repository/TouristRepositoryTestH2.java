@@ -28,17 +28,16 @@ class TouristRepositoryTestH2 {
 
         assertThat(all).isNotNull();
         assertThat(all.size()).isEqualTo(2);
-        assertThat(all.get(0).getName()).isEqualTo("Joshua Tree Park");
-        assertThat(all.get(1).getName()).isEqualTo("Yellow Stone Nation Park");
+        assertThat(all.get(0).getPark()).isEqualTo("Joshua Tree Park");
+        assertThat(all.get(1).getPark()).isEqualTo("Yellow Stone Nation Park");
     }
-
 
     @Test
     void insertAndReadBack() {
-        repository.addAttraction(new TouristAttraction(3, "Yellow Stone National Park", "Yellow Stone Park is abundant i wildlife", List.of("Desert", "Hiking"), "WY"));
+        repository.addAttraction(new TouristAttraction("Yellow Stone National Park", "Yellow Stone Park is abundant i wildlife", List.of("Desert", "Hiking"), "WY", 3));
         var carol = repository.getAttractionById(3);
         assertThat(carol).isNotNull();
-        assertThat(carol.getName()).isEqualTo("Yellow Stone Nation Park");
+        assertThat(carol.getPark()).isEqualTo("Yellow Stone National Park");
     }
 }
 
