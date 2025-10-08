@@ -69,13 +69,10 @@ public class TouristController {
     //Its getters will return the new user-supplied values.
     @PostMapping("/update")
     public String updateAttraction(@ModelAttribute TouristAttraction attraction) {
-        touristService.updateAttraction(
-                attraction.getPark(),
-                attraction.getInfo(),
-                attraction.getTags(),
-                attraction.getLocation());
+        touristService.updateAttraction(attraction);
         return "redirect:/attractions";
     }
+
     //When the object is deleted, the client is in the same instance sent to the 'same' view, but with @GetMapping, showAllAttractions(Model model) controller method called again with new list of TouristAttraction objects displayed.
     @PostMapping("/delete/{name}")
     public String deleteAttraction(@PathVariable String name) {
