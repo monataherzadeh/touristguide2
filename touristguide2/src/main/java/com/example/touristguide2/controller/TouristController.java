@@ -70,8 +70,8 @@ public class TouristController {
     @PostMapping("/update")
     public String updateAttraction(@ModelAttribute TouristAttraction attraction) {
         touristService.updateAttraction(
-                attraction.getName(),
-                attraction.getDescription(),
+                attraction.getPark(),
+                attraction.getInfo(),
                 attraction.getTags(),
                 attraction.getLocation());
         return "redirect:/attractions";

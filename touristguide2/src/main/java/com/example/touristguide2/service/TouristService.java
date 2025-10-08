@@ -23,16 +23,16 @@ public class TouristService {
         return repository.getAllAttractionsRepo();
     }
 
-    public TouristAttraction getAttractionsByName(String name) {
-        return repository.getAttractionByName(name);
+    public TouristAttraction getAttractionsByName(String park) {
+        return repository.getAttractionByName(park);
     }
 
-    public TouristAttraction updateAttraction(String name, String description, String tags, String location) {
-        repository.updateAttraction(name, description,tags,location);
-        return repository.getAttractionByName(name);
+    public TouristAttraction updateAttraction(String park, String info, List<String> tags, String location) {
+        repository.updateAttraction(park, info, tags,location);
+        return repository.getAttractionByName(park);
     }
 
-    public TouristAttraction deleteAttraction(String name) {
-        return repository.deleteAttraction(name);
+    public TouristAttraction deleteAttraction(String park) {
+        return repository.deleteAttraction(park);
     }
 }

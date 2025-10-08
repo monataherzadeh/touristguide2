@@ -24,43 +24,33 @@ public class TouristRepository {
 
     private final RowMapper<TouristAttraction> rowMapper = (rs, rowNum) -> {
         TouristAttraction attraction = new TouristAttraction();
-        attraction.setId(rs.getInt("AttractionID PK"));
-        attraction.setName(rs.getString("Name"));
-        attraction.setDescription(rs.getString("Description"));
-        attraction.setLocation(rs.getString("Location"));
+        attraction.setId(rs.getInt("attractionID"));
+        attraction.setPark(rs.getString("park"));
+        attraction.setInfo(rs.getString("info"));
+        attraction.setLocation(rs.getString("location"));
 
         List<String> tags = new ArrayList<>();
-        String tag = rs.getString("Tag PK");
+        String tag = rs.getString("tag");
         if (tag != null && !tag.isEmpty()) {
             tags.add(tag);
         }
         attraction.setTags(tags);
-
         return attraction;
-
     };
 
-    //The TouristRepository constructor has jdbc template assigned, since there is no need to create an instance of jdbcTemplate in the repository class, but is instead injected from outside the class by using Spring which handles the injection.
-    //This is constructor injection.
     public TouristRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
     public TouristAttraction addAttraction(TouristAttraction attraction) {
+        String insertAttractionSql = "INSERT INTO attraction (park, info, location) VALUES (?, ?, ?)";
+        jdbcTemplate.update(insertAttractionSql, attraction.getPark(), attraction.getInfo(), attraction.getLocation());
 
-        //This contains a query that inserts the fields: name, description and location of the TouristAttraction object
-        //int the Attraction table.
-        String insertAttractionSql = "INSERT INTO TouristAttraction (Name, Description, Location) VALUES (?, ?, ?)";
-        jdbcTemplate.update(insertAttractionSql, attraction.getName(), attraction.getDescription(), attraction.getLocation());
-
-        //Retrieves the ID of the newly inserted Attraction object
         Integer attractionId = jdbcTemplate.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
         attraction.setId(attractionId);
 
-        //This checks whether there are any tags in the TouristAttraction object, and if true, they are inserted into the
-        //tags table.
         if (attraction.getTags() != null && !attraction.getTags().isEmpty()) {
-            String insertTagSql = "INSERT INTO Tags (AttractionID, Tag) VALUES (?, ?)";
+            String insertTagSql = "INSERT INTO tags (attractionID, tag) VALUES (?, ?)";
             for (String tag : attraction.getTags()) {
                 jdbcTemplate.update(insertTagSql, attractionId, tag);
             }
@@ -70,20 +60,18 @@ public class TouristRepository {
     }
 
     public List<TouristAttraction> getAllAttractionsRepo() {
-        String sql = "SELECT t.AttractionID, t.Name, t.Description, t.Location, tg.Tag " +
-                "FROM TouristAttraction t " +
-                "LEFT JOIN Tags tg ON t.AttractionID = tg.AttractionID " +
-                "ORDER BY t.AttractionID";
+        String sql = "SELECT a.attractionID, a.park, a.info, a.location, t.tag " +
+                "FROM attraction a " +
+                "LEFT JOIN tags t ON a.attractionID = t.attractionID " +
+                "ORDER BY a.attractionID";
 
         List<TouristAttraction> rows = jdbcTemplate.query(sql, rowMapper);
-
         List<TouristAttraction> attractionList = new ArrayList<>();
         TouristAttraction current = null;
         Integer lastId = null;
 
         for (TouristAttraction ta : rows) {
             int currentId = ta.getId();
-
             if (current == null || currentId != lastId) {
                 attractionList.add(ta);
                 current = ta;
@@ -95,23 +83,31 @@ public class TouristRepository {
         return attractionList;
     }
 
-    //*ERROR(?): these queries only take data from one table.
-    public TouristAttraction getAttractionByName(String name) {
-        String sql = "SELECT * FROM Attraction WHERE Name = ?";
-        return jdbcTemplate.queryForObject(sql, rowMapper, name);
-    }
+    public TouristAttraction getAttractionByName(String park) {
+        String sql = "SELECT a.attractionID, a.park, a.info, a.location, t.tag " +
+                "FROM attraction a " +
+                "LEFT JOIN tags t ON a.attractionID = t.attractionID " +
+                "WHERE a.park = ?";
 
-    public TouristAttraction getAttractionByIdOld(int id) {
-        String sql = "SELECT * FROM Attraction WHERE id = ?";
-        return jdbcTemplate.queryForObject(sql, rowMapper, id);
+        List<TouristAttraction> rows = jdbcTemplate.query(sql, rowMapper, park);
+
+        TouristAttraction attraction = null;
+        for (TouristAttraction ta : rows) {
+            if (attraction == null) {
+                attraction = ta;
+            } else {
+                attraction.getTags().addAll(ta.getTags());
+            }
+        }
+        return attraction;
     }
 
     public TouristAttraction getAttractionById(int id) {
-        String sql = "SELECT t.AttractionID, t.Name, t.Description, t.Location, tg.Tag " +
-                "FROM TouristAttraction t " +
-                "LEFT JOIN Tags tg ON t.AttractionID = tg.AttractionID " +
-                "WHERE t.AttractionID = ? " +
-                "ORDER BY t.AttractionID";
+        String sql = "SELECT a.attractionID, a.park, a.info, a.location, t.tag " +
+                "FROM attraction a " +
+                "LEFT JOIN tags t ON a.attractionID = t.attractionID " +
+                "WHERE a.attractionID = ? " +
+                "ORDER BY a.attractionID";
 
         List<TouristAttraction> rows = jdbcTemplate.query(sql, rowMapper, id);
 
@@ -126,48 +122,34 @@ public class TouristRepository {
         return attraction;
     }
 
-    public void updateAttraction(String name, String description, String tags, String location) {
-        String sql = "UPDATE Attraction SET Name = ? WHERE Name = ?";
-        jdbcTemplate.update(sql, name);
-    }
-
     public void updateAttractionWithID(TouristAttraction attraction) {
-        String sql = "UPDATE TouristAttraction SET Name = ?, Description = ?, Location = ? WHERE AttractionID = ?";
-        jdbcTemplate.update(sql, attraction.getName(), attraction.getDescription(),
-                attraction.getLocation(), attraction.getId());
+        String sql = "UPDATE attraction SET park = ?, info = ?, location = ? WHERE attractionID = ?";
+        jdbcTemplate.update(sql, attraction.getPark(), attraction.getInfo(), attraction.getLocation(), attraction.getId());
 
-        String deleteTagsSql = "DELETE FROM Tags WHERE AttractionID = ?";
+        String deleteTagsSql = "DELETE FROM tags WHERE attractionID = ?";
         jdbcTemplate.update(deleteTagsSql, attraction.getId());
 
         if (attraction.getTags() != null && !attraction.getTags().isEmpty()) {
-            String insertTagSql = "INSERT INTO Tags (AttractionID, Tag) VALUES (?, ?)";
+            String insertTagSql = "INSERT INTO tags (attractionID, tag) VALUES (?, ?)";
             for (String tag : attraction.getTags()) {
                 jdbcTemplate.update(insertTagSql, attraction.getId(), tag);
             }
         }
     }
 
-    public TouristAttraction deleteAttraction(String name) {
-
-        TouristAttraction attractionToDelete = getAttractionByName(name);
+    public TouristAttraction deleteAttraction(String park) {
+        TouristAttraction attractionToDelete = getAttractionByName(park);
 
         if (attractionToDelete == null) {
             return null;
         }
-        String deleteTagsSql = "DELETE FROM Tags WHERE AttractionID = ?";
+
+        String deleteTagsSql = "DELETE FROM tags WHERE attractionID = ?";
         jdbcTemplate.update(deleteTagsSql, attractionToDelete.getId());
 
-        String deleteAttractionSql = "DELETE FROM TouristAttraction WHERE Name = ?";
-        int rowsAffected = jdbcTemplate.update(deleteAttractionSql, name);
+        String deleteAttractionSql = "DELETE FROM attraction WHERE park = ?";
+        int rowsAffected = jdbcTemplate.update(deleteAttractionSql, park);
 
-        if (rowsAffected > 0) {
-            return attractionToDelete;
-        } else {
-            return null;
-        }
+        return rowsAffected > 0 ? attractionToDelete : null;
     }
 }
-
-
-
-
