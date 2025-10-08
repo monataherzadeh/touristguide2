@@ -67,7 +67,7 @@ jobs:
         uses: azure/webapps-deploy@v3
         with:
           app-name: 'touristguideandensemester'
-          slot-name: 'Production'
           package: 'downloaded-artifact/*.jar'
+
 
 
